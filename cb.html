@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tawasal Academy - Online Classes</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Tawasal Academy - Online Learning Platform</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* Reset and Base Styles */
@@ -12,6 +11,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         :root {
@@ -24,19 +24,25 @@
             --white: #ffffff;
             --danger: #ef4444;
             --warning: #f59e0b;
+            --teacher: #8b5cf6;
+            --student: #06b6d4;
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
-            line-height: 1.6;
+            background-color: #f5f7fa;
             color: var(--dark);
-            background: var(--white);
+            line-height: 1.6;
         }
 
-        /* Navigation Styles */
-        .navbar {
-            background: var(--white);
-            padding: 1rem 0;
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--white);
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             position: fixed;
             width: 100%;
@@ -44,25 +50,33 @@
             z-index: 1000;
         }
 
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
+        .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 1rem 0;
         }
 
-        .logo h2 {
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo h1 {
             color: var(--primary);
-            font-size: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .logo i {
+            font-size: 2rem;
+            color: var(--primary);
         }
 
         .nav-menu {
             display: flex;
             list-style: none;
             gap: 2rem;
-            align-items: center;
         }
 
         .nav-link {
@@ -76,19 +90,38 @@
             color: var(--primary);
         }
 
-        .login-btn {
-            background: var(--primary);
-            color: var(--white);
-            border: none;
-            padding: 0.5rem 1.5rem;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: 500;
-            transition: background 0.3s;
+        .auth-buttons {
+            display: flex;
+            gap: 1rem;
         }
 
-        .login-btn:hover {
+        .btn {
+            padding: 0.6rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
             background: var(--primary-dark);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: var(--white);
         }
 
         .hamburger {
@@ -107,87 +140,53 @@
 
         /* Hero Section */
         .hero {
-            padding: 8rem 2rem 4rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-            min-height: 80vh;
+            padding: 10rem 0 5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: var(--white);
+            text-align: center;
         }
 
-        .hero-content h1 {
-            font-size: 3rem;
-            font-weight: 700;
+        .hero h1 {
+            font-size: 3.5rem;
             margin-bottom: 1rem;
             line-height: 1.2;
         }
 
-        .hero-content h1 span {
-            color: var(--primary);
-        }
-
-        .hero-content p {
+        .hero p {
             font-size: 1.2rem;
-            color: var(--gray);
-            margin-bottom: 2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
         }
 
         .hero-buttons {
             display: flex;
+            justify-content: center;
             gap: 1rem;
-        }
-
-        .btn {
-            padding: 0.8rem 2rem;
-            border: none;
-            border-radius: 5px;
-            font-size: 1rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .btn.primary {
-            background: var(--primary);
-            color: var(--white);
-        }
-
-        .btn.primary:hover {
-            background: var(--primary-dark);
-            transform: translateY(-2px);
-        }
-
-        .btn.secondary {
-            background: transparent;
-            color: var(--primary);
-            border: 2px solid var(--primary);
-        }
-
-        .btn.secondary:hover {
-            background: var(--primary);
-            color: var(--white);
-        }
-
-        .hero-image img {
-            width: 100%;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-top: 2rem;
         }
 
         /* Features Section */
         .features {
-            padding: 4rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            text-align: center;
+            padding: 5rem 0;
+            background: var(--white);
         }
 
-        .features h2 {
-            font-size: 2.5rem;
+        .section-title {
+            text-align: center;
             margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
             color: var(--dark);
+            margin-bottom: 1rem;
+        }
+
+        .section-title p {
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
         }
 
         .features-grid {
@@ -200,7 +199,8 @@
             background: var(--white);
             padding: 2rem;
             border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center;
             transition: transform 0.3s;
         }
 
@@ -211,6 +211,7 @@
         .feature-icon {
             font-size: 3rem;
             margin-bottom: 1rem;
+            color: var(--primary);
         }
 
         .feature-card h3 {
@@ -242,8 +243,9 @@
             padding: 2rem;
             border-radius: 10px;
             width: 90%;
-            max-width: 400px;
+            max-width: 450px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            position: relative;
         }
 
         .modal-header {
@@ -294,15 +296,36 @@
             display: block;
         }
 
-        /* Admin Panel */
-        .admin-panel {
-            display: none;
-            padding: 6rem 2rem 2rem;
-            max-width: 1400px;
-            margin: 0 auto;
+        .form-group {
+            margin-bottom: 1.5rem;
         }
 
-        .admin-header {
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        /* Dashboard Styles */
+        .dashboard {
+            display: none;
+            padding: 6rem 0 2rem;
+        }
+
+        .dashboard-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -311,14 +334,14 @@
             border-bottom: 1px solid #ddd;
         }
 
-        .admin-tabs {
+        .dashboard-tabs {
             display: flex;
             gap: 1rem;
             margin-bottom: 2rem;
             flex-wrap: wrap;
         }
 
-        .admin-tab {
+        .dashboard-tab {
             background: var(--white);
             border: 1px solid #ddd;
             padding: 0.8rem 1.5rem;
@@ -328,24 +351,24 @@
             transition: all 0.3s;
         }
 
-        .admin-tab.active {
+        .dashboard-tab.active {
             background: var(--primary);
             color: var(--white);
             border-color: var(--primary);
         }
 
-        .admin-content {
+        .dashboard-content {
             background: var(--white);
             padding: 2rem;
             border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
 
-        .admin-section {
+        .dashboard-section {
             display: none;
         }
 
-        .admin-section.active {
+        .dashboard-section.active {
             display: block;
         }
 
@@ -386,6 +409,11 @@
             color: var(--white);
         }
 
+        .view-btn {
+            background: var(--secondary);
+            color: var(--white);
+        }
+
         /* Dashboard Cards */
         .dashboard-cards {
             display: grid;
@@ -398,7 +426,7 @@
             background: var(--white);
             padding: 1.5rem;
             border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
             text-align: center;
         }
 
@@ -414,63 +442,79 @@
             color: var(--primary);
         }
 
-        /* Notifications */
-        .notification-badge {
-            background: var(--danger);
-            color: white;
-            border-radius: 50%;
-            width: 20px;
-            height: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.8rem;
-            position: absolute;
-            top: -5px;
-            right: -5px;
-        }
-
-        .notification-container {
-            position: relative;
-        }
-
-        .notifications-panel {
-            position: absolute;
-            top: 40px;
-            right: 0;
-            width: 350px;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            padding: 1rem;
-            z-index: 100;
+        /* Whiteboard Section */
+        .whiteboard-container {
             display: none;
+            padding: 6rem 0 2rem;
         }
 
-        .notification-item {
-            padding: 0.8rem;
-            border-bottom: 1px solid #eee;
+        .whiteboard-header {
             display: flex;
-            align-items: flex-start;
-            gap: 10px;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
         }
 
-        .notification-item:last-child {
-            border-bottom: none;
+        .whiteboard {
+            background: var(--white);
+            border: 1px solid #ddd;
+            height: 500px;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            position: relative;
+            overflow: hidden;
         }
 
-        .notification-icon {
-            color: var(--primary);
-            font-size: 1.2rem;
+        .whiteboard-tools {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
         }
 
-        .notification-content {
-            flex: 1;
+        .tool-btn {
+            padding: 0.5rem 1rem;
+            background: var(--white);
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
         }
 
-        .notification-time {
-            font-size: 0.8rem;
-            color: var(--gray);
+        .tool-btn.active {
+            background: var(--primary);
+            color: var(--white);
+            border-color: var(--primary);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: var(--white);
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: left;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+
+        .footer-section p {
+            color: #ccc;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-bottom {
+            padding-top: 1rem;
+            border-top: 1px solid #444;
+            color: #aaa;
         }
 
         /* Mobile Responsive */
@@ -496,14 +540,8 @@
                 left: 0;
             }
             
-            .hero {
-                grid-template-columns: 1fr;
-                text-align: center;
-                padding: 6rem 1rem 2rem;
-            }
-            
-            .hero-content h1 {
-                font-size: 2rem;
+            .hero h1 {
+                font-size: 2.5rem;
             }
             
             .hero-buttons {
@@ -515,87 +553,83 @@
                 width: 200px;
             }
 
-            .admin-tabs {
+            .dashboard-tabs {
                 flex-direction: column;
-            }
-
-            .notifications-panel {
-                width: 300px;
-                right: -50px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation Bar -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="logo">
-                <h2>📚 Tawasal Academy</h2>
-            </div>
-            <ul class="nav-menu">
-                <li><a href="#home" class="nav-link">Home</a></li>
-                <li><a href="#features" class="nav-link">Features</a></li>
-                <li><a href="#classes" class="nav-link">Classes</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
-                <li class="notification-container">
-                    <button class="login-btn" id="openLoginModal">Login</button>
-                    <div class="notifications-panel" id="notificationsPanel">
-                        <h3>Notifications</h3>
-                        <div id="notificationsList">
-                            <!-- Notifications will be added here dynamically -->
-                        </div>
-                    </div>
-                </li>
-            </ul>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h1>Tawasal Academy</h1>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="#home" class="nav-link">Home</a></li>
+                    <li><a href="#features" class="nav-link">Features</a></li>
+                    <li><a href="#classes" class="nav-link">Classes</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+                <div class="auth-buttons">
+                    <button class="btn btn-outline" id="openLoginModal">Login</button>
+                    <button class="btn btn-primary" id="openRegisterModal">Register</button>
+                </div>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
         </div>
-    </nav>
+    </header>
 
-    <!-- Main Website Content -->
+    <!-- Main Website -->
     <div id="mainWebsite">
         <!-- Hero Section -->
-        <section id="home" class="hero">
-            <div class="hero-content">
+        <section class="hero" id="home">
+            <div class="container">
                 <h1>Learn From The Best <span>Tutors Online</span></h1>
-                <p>Interactive classes, live whiteboard, and personalized learning experience</p>
+                <p>Interactive classes, live whiteboard, and personalized learning experience with Tawasal Academy</p>
                 <div class="hero-buttons">
-                    <button class="btn primary" id="startLearningBtn">Start Learning Today</button>
-                    <button class="btn secondary" id="bookDemoBtn">Book Demo Class</button>
+                    <button class="btn btn-primary" id="startLearningBtn">Start Learning Today</button>
+                    <button class="btn btn-outline" id="bookDemoBtn">Book Demo Class</button>
                 </div>
-            </div>
-            <div class="hero-image">
-                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Online Learning">
             </div>
         </section>
 
         <!-- Features Section -->
-        <section id="features" class="features">
-            <h2>Why Choose Tawasal Academy?</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">🎯</div>
-                    <h3>Live Interactive Classes</h3>
-                    <p>Real-time interaction with teachers and classmates</p>
+        <section class="features" id="features">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Why Choose Tawasal Academy?</h2>
+                    <p>We provide the best online learning experience with cutting-edge technology and expert instructors</p>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📝</div>
-                    <h3>Digital Whiteboard</h3>
-                    <p>Draw, write and explain concepts visually</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📚</div>
-                    <h3>Study Materials</h3>
-                    <p>Download PDFs, assignments and recordings</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">⏰</div>
-                    <h3>Flexible Timing</h3>
-                    <p>Learn at your own pace and schedule</p>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+                        <h3>Live Interactive Classes</h3>
+                        <p>Real-time interaction with teachers and classmates with video and audio</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-pencil-alt"></i></div>
+                        <h3>Digital Whiteboard</h3>
+                        <p>Draw, write and explain concepts visually with our advanced whiteboard</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-book"></i></div>
+                        <h3>Study Materials</h3>
+                        <p>Download PDFs, assignments and class recordings for revision</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-clock"></i></div>
+                        <h3>Flexible Timing</h3>
+                        <p>Learn at your own pace and schedule that fits your lifestyle</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -617,208 +651,385 @@
                 <form id="studentLoginForm">
                     <div class="form-group">
                         <label for="studentEmail">Email</label>
-                        <input type="email" id="studentEmail" required>
+                        <input type="email" id="studentEmail" placeholder="Enter your email" required>
                     </div>
                     <div class="form-group">
                         <label for="studentPassword">Password</label>
-                        <input type="password" id="studentPassword" required>
+                        <input type="password" id="studentPassword" placeholder="Enter your password" required>
                     </div>
-                    <button type="submit" class="btn primary" style="width: 100%;">Login as Student</button>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Login as Student</button>
                 </form>
                 <p style="text-align: center; margin-top: 1rem;">
-                    Don't have an account? <a href="#" style="color: var(--primary);">Sign up here</a>
+                    Don't have an account? <a href="#" style="color: var(--primary);" id="showStudentRegister">Sign up here</a>
                 </p>
             </div>
             <div class="tab-content" id="teacher-tab">
                 <form id="teacherLoginForm">
                     <div class="form-group">
                         <label for="teacherEmail">Email</label>
-                        <input type="email" id="teacherEmail" required>
+                        <input type="email" id="teacherEmail" placeholder="Enter your email" required>
                     </div>
                     <div class="form-group">
                         <label for="teacherPassword">Password</label>
-                        <input type="password" id="teacherPassword" required>
+                        <input type="password" id="teacherPassword" placeholder="Enter your password" required>
                     </div>
-                    <button type="submit" class="btn primary" style="width: 100%;">Login as Teacher</button>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Login as Teacher</button>
                 </form>
+                <p style="text-align: center; margin-top: 1rem;">
+                    Don't have an account? <a href="#" style="color: var(--primary);" id="showTeacherRegister">Apply here</a>
+                </p>
             </div>
             <div class="tab-content" id="admin-tab">
                 <form id="adminLoginForm">
                     <div class="form-group">
                         <label for="adminUsername">Username</label>
-                        <input type="text" id="adminUsername" required>
+                        <input type="text" id="adminUsername" placeholder="Enter admin username" required>
                     </div>
                     <div class="form-group">
                         <label for="adminPassword">Password</label>
-                        <input type="password" id="adminPassword" required>
+                        <input type="password" id="adminPassword" placeholder="Enter admin password" required>
                     </div>
-                    <button type="submit" class="btn primary" style="width: 100%;">Login as Admin</button>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Login as Admin</button>
                 </form>
             </div>
         </div>
     </div>
 
-    <!-- Admin Panel -->
-    <div class="admin-panel" id="adminPanel">
-        <div class="admin-header">
-            <h1>Admin Dashboard <span id="adminName"></span></h1>
-            <div>
-                <button class="btn secondary" id="refreshDataBtn"><i class="fas fa-sync-alt"></i> Refresh</button>
-                <button class="btn secondary" id="logoutBtn">Logout</button>
-            </div>
-        </div>
-        <div class="admin-tabs">
-            <button class="admin-tab active" data-section="overview">Overview</button>
-            <button class="admin-tab" data-section="students">Manage Students</button>
-            <button class="admin-tab" data-section="teachers">Manage Teachers</button>
-            <button class="admin-tab" data-section="classes">Manage Classes</button>
-            <button class="admin-tab" data-section="activity">Activity Log</button>
-            <button class="admin-tab" data-section="notifications">Notifications</button>
-        </div>
-        <div class="admin-content">
-            <div class="admin-section active" id="overview-section">
-                <h2>Dashboard Overview</h2>
-                <div class="dashboard-cards">
-                    <div class="dashboard-card">
-                        <h3>Total Students</h3>
-                        <p id="totalStudents">0</p>
-                    </div>
-                    <div class="dashboard-card">
-                        <h3>Active Teachers</h3>
-                        <p id="totalTeachers">0</p>
-                    </div>
-                    <div class="dashboard-card">
-                        <h3>Ongoing Classes</h3>
-                        <p id="totalClasses">0</p>
-                    </div>
-                    <div class="dashboard-card">
-                        <h3>Today's Logins</h3>
-                        <p id="todayLogins">0</p>
-                    </div>
+    <!-- Admin Dashboard -->
+    <div class="dashboard" id="adminDashboard">
+        <div class="container">
+            <div class="dashboard-header">
+                <h1>Admin Dashboard <span id="adminName"></span></h1>
+                <div>
+                    <button class="btn btn-outline" id="refreshDataBtn"><i class="fas fa-sync-alt"></i> Refresh</button>
+                    <button class="btn btn-primary" id="adminLogoutBtn">Logout</button>
                 </div>
-                <h3 style="margin-top: 2rem;">Recent Activity</h3>
-                <table class="data-table">
-                    <thead>
-                        <tr>
-                            <th>Time</th>
-                            <th>User</th>
-                            <th>Activity</th>
-                            <th>Details</th>
-                        </tr>
-                    </thead>
-                    <tbody id="recentActivityTable">
-                        <!-- Activity data will be populated here -->
-                    </tbody>
-                </table>
             </div>
-            
-            <div class="admin-section" id="students-section">
-                <h2>Student Management</h2>
-                <button class="btn primary" style="margin-bottom: 1rem;" id="addStudentBtn">Add New Student</button>
-                <table class="data-table">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Class</th>
-                            <th>Last Login</th>
-                            <th>Status</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody id="studentsTable">
-                        <!-- Student data will be populated here -->
-                    </tbody>
-                </table>
+            <div class="dashboard-tabs">
+                <button class="dashboard-tab active" data-section="overview">Overview</button>
+                <button class="dashboard-tab" data-section="students">Manage Students</button>
+                <button class="dashboard-tab" data-section="teachers">Manage Teachers</button>
+                <button class="dashboard-tab" data-section="classes">Manage Classes</button>
+                <button class="dashboard-tab" data-section="activity">Activity Log</button>
+                <button class="dashboard-tab" data-section="whiteboard">Monitor Whiteboards</button>
             </div>
-            
-            <div class="admin-section" id="teachers-section">
-                <h2>Teacher Management</h2>
-                <button class="btn primary" style="margin-bottom: 1rem;" id="addTeacherBtn">Add New Teacher</button>
-                <table class="data-table">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Subject</th>
-                            <th>Last Login</th>
-                            <th>Status</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody id="teachersTable">
-                        <!-- Teacher data will be populated here -->
-                    </tbody>
-                </table>
-            </div>
-            
-            <div class="admin-section" id="activity-section">
-                <h2>Activity Log</h2>
-                <div style="margin-bottom: 1rem;">
-                    <button class="btn secondary" id="filterTodayBtn">Today</button>
-                    <button class="btn secondary" id="filterWeekBtn">This Week</button>
-                    <button class="btn secondary" id="filterMonthBtn">This Month</button>
-                    <button class="btn secondary" id="filterAllBtn">All Time</button>
-                </div>
-                <table class="data-table">
-                    <thead>
-                        <tr>
-                            <th>Date & Time</th>
-                            <th>User Type</th>
-                            <th>User Name</th>
-                            <th>Activity</th>
-                            <th>IP Address</th>
-                        </tr>
-                    </thead>
-                    <tbody id="activityLogTable">
-                        <!-- Activity log data will be populated here -->
-                    </tbody>
-                </table>
-            </div>
-            
-            <div class="admin-section" id="notifications-section">
-                <h2>Notification Center</h2>
-                <div class="dashboard-cards">
-                    <div class="dashboard-card">
-                        <h3>Unread Notifications</h3>
-                        <p id="unreadNotifications">0</p>
+            <div class="dashboard-content">
+                <div class="dashboard-section active" id="overview-section">
+                    <h2>Dashboard Overview</h2>
+                    <div class="dashboard-cards">
+                        <div class="dashboard-card">
+                            <h3>Total Students</h3>
+                            <p id="totalStudents">0</p>
+                        </div>
+                        <div class="dashboard-card">
+                            <h3>Active Teachers</h3>
+                            <p id="totalTeachers">0</p>
+                        </div>
+                        <div class="dashboard-card">
+                            <h3>Ongoing Classes</h3>
+                            <p id="totalClasses">0</p>
+                        </div>
+                        <div class="dashboard-card">
+                            <h3>Today's Logins</h3>
+                            <p id="todayLogins">0</p>
+                        </div>
                     </div>
-                    <div class="dashboard-card">
-                        <h3>Total Notifications</h3>
-                        <p id="totalNotifications">0</p>
+                    <h3 style="margin-top: 2rem;">Recent Activity</h3>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Time</th>
+                                <th>User</th>
+                                <th>Activity</th>
+                                <th>Details</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recentActivityTable">
+                            <!-- Activity data will be populated here -->
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="dashboard-section" id="students-section">
+                    <h2>Student Management</h2>
+                    <button class="btn btn-primary" style="margin-bottom: 1rem;" id="addStudentBtn">Add New Student</button>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Class</th>
+                                <th>Last Login</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="studentsTable">
+                            <!-- Student data will be populated here -->
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="dashboard-section" id="teachers-section">
+                    <h2>Teacher Management</h2>
+                    <button class="btn btn-primary" style="margin-bottom: 1rem;" id="addTeacherBtn">Add New Teacher</button>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Subject</th>
+                                <th>Last Login</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="teachersTable">
+                            <!-- Teacher data will be populated here -->
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="dashboard-section" id="whiteboard-section">
+                    <h2>Monitor Whiteboards</h2>
+                    <div class="dashboard-cards">
+                        <div class="dashboard-card">
+                            <h3>Active Whiteboards</h3>
+                            <p id="activeWhiteboards">0</p>
+                        </div>
+                        <div class="dashboard-card">
+                            <h3>Teachers Online</h3>
+                            <p id="teachersOnline">0</p>
+                        </div>
                     </div>
+                    <h3 style="margin-top: 2rem;">Live Whiteboard Sessions</h3>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Teacher</th>
+                                <th>Subject</th>
+                                <th>Students</th>
+                                <th>Start Time</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="whiteboardSessionsTable">
+                            <tr>
+                                <td>Mr. Ahmed</td>
+                                <td>Mathematics</td>
+                                <td>15</td>
+                                <td>10:30 AM</td>
+                                <td>Active</td>
+                                <td><button class="action-btn view-btn">View</button></td>
+                            </tr>
+                            <tr>
+                                <td>Ms. Fatima</td>
+                                <td>Science</td>
+                                <td>12</td>
+                                <td>11:00 AM</td>
+                                <td>Active</td>
+                                <td><button class="action-btn view-btn">View</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-                <div style="margin: 1.5rem 0;">
-                    <button class="btn primary" id="markAllReadBtn">Mark All as Read</button>
-                    <button class="btn secondary" id="clearNotificationsBtn">Clear All</button>
-                </div>
-                <table class="data-table">
-                    <thead>
-                        <tr>
-                            <th>Date & Time</th>
-                            <th>Type</th>
-                            <th>Message</th>
-                            <th>Status</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody id="notificationsTable">
-                        <!-- Notifications data will be populated here -->
-                    </tbody>
-                </table>
             </div>
         </div>
     </div>
+
+    <!-- Teacher Dashboard -->
+    <div class="dashboard" id="teacherDashboard">
+        <div class="container">
+            <div class="dashboard-header">
+                <h1>Teacher Dashboard <span id="teacherName"></span></h1>
+                <button class="btn btn-primary" id="teacherLogoutBtn">Logout</button>
+            </div>
+            <div class="dashboard-tabs">
+                <button class="dashboard-tab active" data-section="teacherClasses">My Classes</button>
+                <button class="dashboard-tab" data-section="teacherWhiteboard">Whiteboard</button>
+                <button class="dashboard-tab" data-section="teacherMaterials">Study Materials</button>
+            </div>
+            <div class="dashboard-content">
+                <div class="dashboard-section active" id="teacherClasses-section">
+                    <h2>My Classes</h2>
+                    <div class="dashboard-cards">
+                        <div class="dashboard-card">
+                            <h3>Total Classes</h3>
+                            <p>5</p>
+                        </div>
+                        <div class="dashboard-card">
+                            <h3>Students</h3>
+                            <p>68</p>
+                        </div>
+                        <div class="dashboard-card">
+                            <h3>Today's Classes</h3>
+                            <p>2</p>
+                        </div>
+                    </div>
+                    <h3 style="margin-top: 2rem;">Class Schedule</h3>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Class</th>
+                                <th>Time</th>
+                                <th>Students</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Mathematics Grade 10</td>
+                                <td>10:00 AM - 11:30 AM</td>
+                                <td>15</td>
+                                <td><button class="action-btn view-btn start-class-btn">Start Class</button></td>
+                            </tr>
+                            <tr>
+                                <td>Science Grade 9</td>
+                                <td>2:00 PM - 3:30 PM</td>
+                                <td>12</td>
+                                <td><button class="action-btn view-btn start-class-btn">Start Class</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="dashboard-section" id="teacherWhiteboard-section">
+                    <h2>Interactive Whiteboard</h2>
+                    <div class="whiteboard-tools">
+                        <button class="tool-btn active" data-tool="pen">Pen</button>
+                        <button class="tool-btn" data-tool="eraser">Eraser</button>
+                        <button class="tool-btn" data-tool="text">Text</button>
+                        <button class="tool-btn" data-tool="shape">Shapes</button>
+                        <button class="btn btn-primary" id="clearWhiteboard">Clear</button>
+                        <button class="btn btn-outline" id="saveWhiteboard">Save</button>
+                    </div>
+                    <div class="whiteboard" id="teacherWhiteboard">
+                        <!-- Whiteboard will be rendered here -->
+                        <canvas id="whiteboardCanvas" width="1000" height="500"></canvas>
+                    </div>
+                    <div style="margin-top: 1rem;">
+                        <h3>Upload Study Material</h3>
+                        <input type="file" id="studyMaterial" style="margin-top: 0.5rem;">
+                        <button class="btn btn-primary" style="margin-top: 0.5rem;">Upload</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Student Dashboard -->
+    <div class="dashboard" id="studentDashboard">
+        <div class="container">
+            <div class="dashboard-header">
+                <h1>Student Dashboard <span id="studentName"></span></h1>
+                <button class="btn btn-primary" id="studentLogoutBtn">Logout</button>
+            </div>
+            <div class="dashboard-tabs">
+                <button class="dashboard-tab active" data-section="studentClasses">My Classes</button>
+                <button class="dashboard-tab" data-section="studentWhiteboard">Whiteboard</button>
+                <button class="dashboard-tab" data-section="studentMaterials">Study Materials</button>
+            </div>
+            <div class="dashboard-content">
+                <div class="dashboard-section active" id="studentClasses-section">
+                    <h2>My Classes</h2>
+                    <div class="dashboard-cards">
+                        <div class="dashboard-card">
+                            <h3>Enrolled Classes</h3>
+                            <p>3</p>
+                        </div>
+                        <div class="dashboard-card">
+                            <h3>Assignments Due</h3>
+                            <p>2</p>
+                        </div>
+                        <div class="dashboard-card">
+                            <h3>Upcoming Classes</h3>
+                            <p>5</p>
+                        </div>
+                    </div>
+                    <h3 style="margin-top: 2rem;">Class Schedule</h3>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Class</th>
+                                <th>Teacher</th>
+                                <th>Time</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Mathematics Grade 10</td>
+                                <td>Mr. Ahmed</td>
+                                <td>10:00 AM - 11:30 AM</td>
+                                <td><button class="action-btn view-btn join-class-btn">Join Class</button></td>
+                            </tr>
+                            <tr>
+                                <td>Science Grade 9</td>
+                                <td>Ms. Fatima</td>
+                                <td>2:00 PM - 3:30 PM</td>
+                                <td><button class="action-btn view-btn join-class-btn">Join Class</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="dashboard-section" id="studentWhiteboard-section">
+                    <h2>Class Whiteboard</h2>
+                    <div class="whiteboard" id="studentWhiteboard">
+                        <!-- Whiteboard will be rendered here -->
+                        <canvas id="studentWhiteboardCanvas" width="1000" height="500"></canvas>
+                    </div>
+                    <div style="margin-top: 1rem;">
+                        <h3>Download Study Material</h3>
+                        <ul style="margin-top: 0.5rem;">
+                            <li><a href="#">Mathematics Chapter 5 Notes.pdf</a></li>
+                            <li><a href="#">Science Assignment 3.docx</a></li>
+                            <li><a href="#">Class Recording - Oct 15.mp4</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Tawasal Academy</h3>
+                    <p>Providing quality education through innovative online learning solutions.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <p><a href="#home" style="color: #ccc; text-decoration: none;">Home</a></p>
+                    <p><a href="#features" style="color: #ccc; text-decoration: none;">Features</a></p>
+                    <p><a href="#classes" style="color: #ccc; text-decoration: none;">Classes</a></p>
+                    <p><a href="#about" style="color: #ccc; text-decoration: none;">About</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p>Email: info@tawasalacademy.com</p>
+                    <p>Phone: +92 300 1234567</p>
+                    <p>Address: Karachi, Pakistan</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Tawasal Academy. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
 
     <script>
         // Data Storage
         let users = JSON.parse(localStorage.getItem('tawasalUsers')) || {
             admin: { username: 'admin', password: 'admin123', name: 'System Administrator', lastLogin: null },
             students: [
-                { id: 'ST001', name: 'Ali Ahmed', email: 'ali.ahmed@example.com', password: 'student123', class: 'Mathematics Grade 10', lastLogin: null, status: 'Active' },
-                { id: 'ST002', name: 'Fatima Khan', email: 'fatima.khan@example.com', password: 'student123', class: 'Science Grade 9', lastLogin: null, status: 'Active' }
+                { id: 'ST001', name: 'Ali Ahmed', email: 'ali@example.com', password: 'student123', class: 'Mathematics Grade 10', lastLogin: null, status: 'Active' },
+                { id: 'ST002', name: 'Fatima Khan', email: 'fatima@example.com', password: 'student123', class: 'Science Grade 9', lastLogin: null, status: 'Active' }
             ],
             teachers: [
                 { id: 'T001', name: 'Mr. Ahmed', email: 'ahmed@tawasal.com', password: 'teacher123', subject: 'Mathematics', lastLogin: null, status: 'Active' },
@@ -827,7 +1038,7 @@
         };
 
         let activityLog = JSON.parse(localStorage.getItem('tawasalActivityLog')) || [];
-        let notifications = JSON.parse(localStorage.getItem('tawasalNotifications')) || [];
+        let whiteboardSessions = JSON.parse(localStorage.getItem('tawasalWhiteboardSessions')) || [];
 
         // DOM Elements
         const loginModal = document.getElementById('loginModal');
@@ -835,276 +1046,18 @@
         const closeModalBtn = document.querySelector('.close-modal');
         const tabBtns = document.querySelectorAll('.tab-btn');
         const tabContents = document.querySelectorAll('.tab-content');
-        const adminPanel = document.getElementById('adminPanel');
+        const adminDashboard = document.getElementById('adminDashboard');
+        const teacherDashboard = document.getElementById('teacherDashboard');
+        const studentDashboard = document.getElementById('studentDashboard');
         const mainWebsite = document.getElementById('mainWebsite');
-        const logoutBtn = document.getElementById('logoutBtn');
+        const adminLogoutBtn = document.getElementById('adminLogoutBtn');
+        const teacherLogoutBtn = document.getElementById('teacherLogoutBtn');
+        const studentLogoutBtn = document.getElementById('studentLogoutBtn');
         const adminTabs = document.querySelectorAll('.admin-tab');
-        const adminSections = document.querySelectorAll('.admin-section');
+        const adminSections = document.querySelectorAll('.dashboard-section');
         const refreshDataBtn = document.getElementById('refreshDataBtn');
 
         // Initialize the application
         function initApp() {
             updateDashboard();
-            updateActivityLogTable();
-            updateNotifications();
-            
-            // Check if admin is already logged in
-            const currentAdmin = localStorage.getItem('currentAdmin');
-            if (currentAdmin) {
-                showAdminPanel();
-            }
         }
-
-        // Event Listeners
-        openLoginModalBtn.addEventListener('click', () => {
-            loginModal.style.display = 'flex';
-        });
-
-        closeModalBtn.addEventListener('click', () => {
-            loginModal.style.display = 'none';
-        });
-
-        // Tab switching in login modal
-        tabBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const tab = btn.getAttribute('data-tab');
-                
-                // Update active tab button
-                tabBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                
-                // Update active tab content
-                tabContents.forEach(content => {
-                    content.classList.remove('active');
-                    if (content.id === `${tab}-tab`) {
-                        content.classList.add('active');
-                    }
-                });
-            });
-        });
-
-        // Admin tab switching
-        adminTabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                const section = tab.getAttribute('data-section');
-                
-                // Update active tab
-                adminTabs.forEach(t => t.classList.remove('active'));
-                tab.classList.add('active');
-                
-                // Update active section
-                adminSections.forEach(s => s.classList.remove('active'));
-                document.getElementById(`${section}-section`).classList.add('active');
-            });
-        });
-
-        // Login form submissions
-        document.getElementById('studentLoginForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const email = document.getElementById('studentEmail').value;
-            const password = document.getElementById('studentPassword').value;
-            loginUser('student', email, password);
-        });
-
-        document.getElementById('teacherLoginForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const email = document.getElementById('teacherEmail').value;
-            const password = document.getElementById('teacherPassword').value;
-            loginUser('teacher', email, password);
-        });
-
-        document.getElementById('adminLoginForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const username = document.getElementById('adminUsername').value;
-            const password = document.getElementById('adminPassword').value;
-            loginUser('admin', username, password);
-        });
-
-        // Logout functionality
-        logoutBtn.addEventListener('click', () => {
-            localStorage.removeItem('currentAdmin');
-            showMainWebsite();
-        });
-
-        // Refresh data
-        refreshDataBtn.addEventListener('click', () => {
-            updateDashboard();
-            updateActivityLogTable();
-            updateNotifications();
-            alert('Data refreshed successfully!');
-        });
-
-        // Login function
-        function loginUser(userType, identifier, password) {
-            let user = null;
-            
-            if (userType === 'admin') {
-                if (users.admin.username === identifier && users.admin.password === password) {
-                    user = users.admin;
-                }
-            } else if (userType === 'student') {
-                user = users.students.find(s => s.email === identifier && s.password === password);
-            } else if (userType === 'teacher') {
-                user = users.teachers.find(t => t.email === identifier && t.password === password);
-            }
-            
-            if (user) {
-                // Update last login
-                user.lastLogin = new Date().toISOString();
-                
-                // Log activity
-                logActivity(userType, user.name, 'User logged in');
-                
-                // Create notification for admin
-                if (userType !== 'admin') {
-                    createNotification(`${userType} Login`, `${user.name} (${user.email}) logged in at ${new Date().toLocaleString()}`);
-                }
-                
-                // Save data
-                saveData();
-                
-                // Show appropriate panel
-                if (userType === 'admin') {
-                    localStorage.setItem('currentAdmin', JSON.stringify(user));
-                    showAdminPanel();
-                } else {
-                    alert(`Welcome ${user.name}! Student/Teacher dashboard will be implemented in the next version.`);
-                }
-                
-                loginModal.style.display = 'none';
-                
-                // Clear form
-                document.getElementById(`${userType}LoginForm`).reset();
-            } else {
-                alert('Invalid credentials! Please try again.');
-            }
-        }
-
-        // Show admin panel
-        function showAdminPanel() {
-            mainWebsite.style.display = 'none';
-            adminPanel.style.display = 'block';
-            document.getElementById('adminName').textContent = `- ${JSON.parse(localStorage.getItem('currentAdmin')).name}`;
-            updateDashboard();
-            updateActivityLogTable();
-            updateNotifications();
-        }
-
-        // Show main website
-        function showMainWebsite() {
-            adminPanel.style.display = 'none';
-            mainWebsite.style.display = 'block';
-        }
-
-        // Update dashboard with current data
-        function updateDashboard() {
-            document.getElementById('totalStudents').textContent = users.students.length;
-            document.getElementById('totalTeachers').textContent = users.teachers.length;
-            document.getElementById('totalClasses').textContent = 12; // Hardcoded for demo
-            
-            // Calculate today's logins
-            const today = new Date().toDateString();
-            const todayLogins = activityLog.filter(activity => {
-                const activityDate = new Date(activity.timestamp).toDateString();
-                return activityDate === today && activity.activity === 'User logged in';
-            }).length;
-            
-            document.getElementById('todayLogins').textContent = todayLogins;
-            
-            // Update recent activity table
-            const recentActivityTable = document.getElementById('recentActivityTable');
-            recentActivityTable.innerHTML = '';
-            
-            const recentActivities = activityLog.slice(-5).reverse();
-            recentActivities.forEach(activity => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${new Date(activity.timestamp).toLocaleString()}</td>
-                    <td>${activity.userName}</td>
-                    <td>${activity.activity}</td>
-                    <td>${activity.details || '-'}</td>
-                `;
-                recentActivityTable.appendChild(row);
-            });
-            
-            // Update students table
-            const studentsTable = document.getElementById('studentsTable');
-            studentsTable.innerHTML = '';
-            
-            users.students.forEach(student => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${student.id}</td>
-                    <td>${student.name}</td>
-                    <td>${student.email}</td>
-                    <td>${student.class}</td>
-                    <td>${student.lastLogin ? new Date(student.lastLogin).toLocaleString() : 'Never'}</td>
-                    <td>${student.status}</td>
-                    <td>
-                        <button class="action-btn edit-btn">Edit</button>
-                        <button class="action-btn delete-btn">Delete</button>
-                    </td>
-                `;
-                studentsTable.appendChild(row);
-            });
-            
-            // Update teachers table
-            const teachersTable = document.getElementById('teachersTable');
-            teachersTable.innerHTML = '';
-            
-            users.teachers.forEach(teacher => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${teacher.id}</td>
-                    <td>${teacher.name}</td>
-                    <td>${teacher.email}</td>
-                    <td>${teacher.subject}</td>
-                    <td>${teacher.lastLogin ? new Date(teacher.lastLogin).toLocaleString() : 'Never'}</td>
-                    <td>${teacher.status}</td>
-                    <td>
-                        <button class="action-btn edit-btn">Edit</button>
-                        <button class="action-btn delete-btn">Delete</button>
-                    </td>
-                `;
-                teachersTable.appendChild(row);
-            });
-        }
-
-        // Update activity log table
-        function updateActivityLogTable() {
-            const activityLogTable = document.getElementById('activityLogTable');
-            activityLogTable.innerHTML = '';
-            
-            activityLog.slice().reverse().forEach(activity => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${new Date(activity.timestamp).toLocaleString()}</td>
-                    <td>${activity.userType}</td>
-                    <td>${activity.userName}</td>
-                    <td>${activity.activity}</td>
-                    <td>${activity.ipAddress || 'N/A'}</td>
-                `;
-                activityLogTable.appendChild(row);
-            });
-        }
-
-        // Update notifications
-        function updateNotifications() {
-            const unreadCount = notifications.filter(n => !n.read).length;
-            document.getElementById('unreadNotifications').textContent = unreadCount;
-            document.getElementById('totalNotifications').textContent = notifications.length;
-            
-            // Update notifications table
-            const notificationsTable = document.getElementById('notificationsTable');
-            notificationsTable.innerHTML = '';
-            
-            notifications.slice().reverse().forEach(notification => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${new Date(notification.timestamp).toLocaleString()}</td>
-                    <td>${notification.type}</td>
-                    <td>${notification.message}</td>
-                    <td>${notification.read ? 'Read' : 'Unread'}</td>
-                    <td>
-                        ${!notification.read ? '<button class="action-btn edit-btn mark-read-btn">Mark Read</button>' : ''}
-                        <button class="action
